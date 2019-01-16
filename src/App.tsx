@@ -7,7 +7,7 @@ interface AppProps {
 }
 
 interface AppStates {
-  tasks: Array<any>
+  tasks: Array<ITask>
 }
 
 export default class App extends React.Component <AppProps, AppStates> {
