@@ -18,11 +18,13 @@ export default class App extends React.Component <AppProps, AppStates> {
     }
   }
   
-  addNewTask(newTask: ITask) {
-    console.log(newTask);
+  addNewTask = (newTask: ITask) => {
+    const _tasks = newTask; 
+    this.setState({ tasks: [...this.state.tasks, _tasks] })
   }
 
   render() {
+    console.log(this.state);
     const { title } = this.props;
     return (
       <Grid>
