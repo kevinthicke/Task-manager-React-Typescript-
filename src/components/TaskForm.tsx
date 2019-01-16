@@ -2,11 +2,13 @@ import * as React from 'react';
 import { Button, FormGroup, FormControl, ControlLabel, FormControlProps} from 'react-bootstrap';
 
 interface TaskFormStates {
+    id: number,
     title: string,
     description: string
 }
 
 export interface ITask {
+    id: number,
     title: string,
     description: string
 }
@@ -16,9 +18,10 @@ interface TaskFormProps {
 }
 
 export default class TaskForm extends React.Component <TaskFormProps, TaskFormStates> {
-    constructor(props:TaskFormProps) {
+    constructor(props: TaskFormProps) {
         super(props);
         this.state = {
+            id: 0,
             title: '',
             description: ''
         }
@@ -26,11 +29,17 @@ export default class TaskForm extends React.Component <TaskFormProps, TaskFormSt
         this.handleOnChange = this.handleOnChange.bind(this);
     }
 
+    getCurrentTime = (): number => {
+        const date = new Date();
+        return date.getTime();
+    }
+
     handleOnSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-
         const { title, description } = this.state;
+        
         const newTask: ITask = { 
+            id: this.getCurrentTime(),
             title,
             description
         }
