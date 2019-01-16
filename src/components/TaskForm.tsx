@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Button, FormGroup, FormControl, ControlLabel, FormControlProps} from 'react-bootstrap';
 
 interface TaskFormStates {
-    title: string
+    title: string,
+    description: string
 }
 
 export interface ITask {
@@ -13,12 +14,12 @@ interface TaskFormProps {
     addNewTask: (task: ITask) => void;
 }
 
-
 export default class TaskForm extends React.Component <TaskFormProps, TaskFormStates> {
     constructor(props:TaskFormProps) {
         super(props);
         this.state = {
             title: '',
+            description: ''
         }
 
         this.handleOnChange = this.handleOnChange.bind(this);
@@ -27,26 +28,41 @@ export default class TaskForm extends React.Component <TaskFormProps, TaskFormSt
     handleOnSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
+        /*
         const { title } = this.state;
-        const newTask: ITask = { title: title as string }
+        const newTask: ITask = { 
+            title
+        }
 
         this.props.addNewTask(newTask);
+        */
     }
 
     handleOnChange(event: React.FormEvent<FormControl>) {
-        const { value } = event.target as HTMLInputElement;
+        const { value, name } = event.target as HTMLInputElement;
+        if (name==='title') {
+            this.setState({ title: value })
+        } else if (name==='description') {
+            this.setState({ description: value })
+        }
 
-        this.setState({
-            title: value
-        })
     }
 
     render() {
+        console.log(this.state);
         return (
             <form onSubmit={(event) => this.handleOnSubmit(event)}>
                 <FormGroup>
                     <ControlLabel>Task title</ControlLabel>
-                    <FormControl type="text" label="Task title" onChange={this.handleOnChange}/>
+                    <FormControl type="text"
+                                 name="title"
+                                 onChange={this.handleOnChange}/>
+                </FormGroup>
+                <FormGroup>
+                    <ControlLabel>Task title</ControlLabel>
+                    <FormControl componentClass="textarea"
+                                 name="description"
+                                 onChange={this.handleOnChange}/>
                 </FormGroup>    
                 <Button type="submit" bsStyle="primary">Save</Button>
             </form>            
