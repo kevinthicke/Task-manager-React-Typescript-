@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Grid } from 'react-bootstrap';
-import TaskForm, { ITask } from './components/TaskForm';
+import { Grid, Col, Row } from 'react-bootstrap';
+import TaskForm, { ITask } from './components/TasksForm';
+import TasksList from './components/TasksList';
 
 interface AppProps {
   title: string
@@ -25,14 +26,19 @@ export default class App extends React.Component <AppProps, AppStates> {
     this.setState({ tasks: [...this.state.tasks, _tasks] })
   }
 
-  render() {
+  render(): JSX.Element {
     const { title } = this.props;
-    console.log(this.state);
+    const { tasks } = this.state;
     return (
       <Grid>
         <h1>{ title }</h1>
-        <TaskForm addNewTask={this.addNewTask}/>
-      </Grid>
+        <Row>
+          <TaskForm addNewTask={this.addNewTask}/>
+        </Row>
+        <Row>
+          <TasksList tasks={tasks}/>
+        </Row>
+        </Grid>
     )
   }
 }

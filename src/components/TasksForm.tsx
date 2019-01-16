@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { Button, FormGroup, FormControl, ControlLabel, FormControlProps} from 'react-bootstrap';
 
+const TaskFormStyle: React.CSSProperties = {
+    width: '400px',
+    margin: '20px'
+}
+
 interface TaskFormStates {
     id: number,
     title: string,
@@ -53,9 +58,9 @@ export default class TaskForm extends React.Component <TaskFormProps, TaskFormSt
         this.setState({ ...this.state, [name]: value })
     }
 
-    render() {
+    render(): JSX.Element {
         return (
-            <form onSubmit={(event) => this.handleOnSubmit(event)}>
+            <form onSubmit={(event) => this.handleOnSubmit(event)} style={TaskFormStyle}>
                 <FormGroup>
                     <ControlLabel>Task title</ControlLabel>
                     <FormControl type="text"
