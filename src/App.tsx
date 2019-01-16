@@ -18,7 +18,7 @@ export default class App extends React.Component <AppProps, AppStates> {
     }
   }
   
-  addNewTask( newTask: ITask) {
+  addNewTask(newTask: ITask) {
     console.log(newTask);
   }
 

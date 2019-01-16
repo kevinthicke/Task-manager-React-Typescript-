@@ -28,24 +28,18 @@ export default class TaskForm extends React.Component <TaskFormProps, TaskFormSt
     handleOnSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        /*
         const { title } = this.state;
         const newTask: ITask = { 
             title
         }
 
         this.props.addNewTask(newTask);
-        */
     }
 
     handleOnChange(event: React.FormEvent<FormControl>) {
         const { value, name } = event.target as HTMLInputElement;
-        if (name==='title') {
-            this.setState({ title: value })
-        } else if (name==='description') {
-            this.setState({ description: value })
-        }
 
+        this.setState({ ...this.state, [name]: value })
     }
 
     render() {
@@ -60,7 +54,7 @@ export default class TaskForm extends React.Component <TaskFormProps, TaskFormSt
                 </FormGroup>
                 <FormGroup>
                     <ControlLabel>Task title</ControlLabel>
-                    <FormControl componentClass="textarea"
+                    <FormControl type="text"
                                  name="description"
                                  onChange={this.handleOnChange}/>
                 </FormGroup>    
