@@ -7,7 +7,8 @@ interface TaskFormStates {
 }
 
 export interface ITask {
-    title: string
+    title: string,
+    description: string
 }
 
 interface TaskFormProps {
@@ -28,9 +29,10 @@ export default class TaskForm extends React.Component <TaskFormProps, TaskFormSt
     handleOnSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        const { title } = this.state;
+        const { title, description } = this.state;
         const newTask: ITask = { 
-            title
+            title,
+            description
         }
 
         this.props.addNewTask(newTask);
@@ -43,7 +45,6 @@ export default class TaskForm extends React.Component <TaskFormProps, TaskFormSt
     }
 
     render() {
-        console.log(this.state);
         return (
             <form onSubmit={(event) => this.handleOnSubmit(event)}>
                 <FormGroup>
