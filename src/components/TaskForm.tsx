@@ -6,7 +6,7 @@ interface TaskFormStates {
 }
 
 export interface ITask {
-    title: ''
+    title: string
 }
 
 interface TaskFormProps {
@@ -14,7 +14,7 @@ interface TaskFormProps {
 }
 
 
-export default class TaskForm extends React.Component <TaskFormProps, any> {
+export default class TaskForm extends React.Component <TaskFormProps, TaskFormStates> {
     constructor(props:TaskFormProps) {
         super(props);
         this.state = {
@@ -28,7 +28,7 @@ export default class TaskForm extends React.Component <TaskFormProps, any> {
         event.preventDefault();
 
         const { title } = this.state;
-        const newTask: ITask = { title };
+        const newTask: ITask = { title: title as string }
 
         this.props.addNewTask(newTask);
     }
