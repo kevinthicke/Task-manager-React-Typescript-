@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Grid } from 'react-bootstrap';
-import TaskForm from './components/TaskForm';
+import TaskForm, { ITask } from './components/TaskForm';
 
 interface AppProps {
   title: string
@@ -18,12 +18,16 @@ export default class App extends React.Component <AppProps, AppStates> {
     }
   }
   
+  addNewTask( newTask: ITask) {
+    console.log(newTask);
+  }
+
   render() {
     const { title } = this.props;
     return (
       <Grid>
         <h1>{ title }</h1>
-        <TaskForm/>
+        <TaskForm addNewTask={this.addNewTask}/>
       </Grid>
     )
   }

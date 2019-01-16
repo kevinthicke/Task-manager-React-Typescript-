@@ -5,15 +5,32 @@ interface TaskFormStates {
     title: string
 }
 
+export interface ITask {
+    title: ''
+}
 
-export default class TaskForm extends React.Component <any, TaskFormStates> {
-    constructor(props:any) {
+interface TaskFormProps {
+    addNewTask: (task: ITask) => void;
+}
+
+
+export default class TaskForm extends React.Component <TaskFormProps, any> {
+    constructor(props:TaskFormProps) {
         super(props);
         this.state = {
             title: '',
         }
 
         this.handleOnChange = this.handleOnChange.bind(this);
+    }
+
+    handleOnSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        const { title } = this.state;
+        const newTask: ITask = { title };
+
+        this.props.addNewTask(newTask);
     }
 
     handleOnChange(event: React.FormEvent<FormControl>) {
@@ -26,10 +43,13 @@ export default class TaskForm extends React.Component <any, TaskFormStates> {
 
     render() {
         return (
-            <FormGroup>
-                <ControlLabel>Task title</ControlLabel>
-                <FormControl type="text" label="Task title" onChange={this.handleOnChange}/>
-            </FormGroup>    
+            <form onSubmit={(event) => this.handleOnSubmit(event)}>
+                <FormGroup>
+                    <ControlLabel>Task title</ControlLabel>
+                    <FormControl type="text" label="Task title" onChange={this.handleOnChange}/>
+                </FormGroup>    
+                <Button type="submit" bsStyle="primary">Save</Button>
+            </form>            
         );
     }
 }
