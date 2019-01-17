@@ -23,14 +23,15 @@ export default class App extends React.Component <AppProps, AppStates> {
   }
   
   addNewTask(newTask: ITask) {
-    this.setState({ tasks: [...this.state.tasks, newTask] })
+    this.setState({ 
+      tasks: [...this.state.tasks, newTask] 
+    })
   }
 
   deleteTask(id:number) {
-    const { tasks } = this.state;
-    const actualizedTasks = tasks.filter(task => task.id!==id)
-    
-    this.setState({ tasks: actualizedTasks });
+    this.setState({ 
+      tasks: this.state.tasks.filter(task => task.id!==id) 
+    });
   }
 
   render(): JSX.Element {
