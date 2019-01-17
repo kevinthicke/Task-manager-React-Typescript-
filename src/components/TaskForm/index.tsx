@@ -2,6 +2,10 @@ import * as React from 'react';
 import { Button, FormGroup, ControlLabel, FormControl, Well } from 'react-bootstrap';
 import { ITask } from '../../interfaces';
 
+const TaskFormStyle = {
+  width: '300px'
+}
+
 interface TaskFormStates {
     title: string,
     description: string
@@ -39,7 +43,7 @@ export default class TaskForm extends React.Component <TaskFormProps,TaskFormSta
         const { title, description } = this.state;
 
         return (
-          <Well>
+          <Well style={TaskFormStyle}>
             <form onSubmit={event => this.handleAddTask(event)}>
                     <FormGroup>
                         <ControlLabel>Title</ControlLabel>
