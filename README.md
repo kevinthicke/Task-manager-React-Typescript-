@@ -1,3 +1,1 @@
-# Task Manager App
-
-A simple React.js (Typescript) App.
+# Simple ReactJS Redux (Typescript) App

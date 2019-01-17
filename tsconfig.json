@@ -5,8 +5,7 @@
     "jsx": "react",
     "typeRoots": [
       "node_modules/@types"
-    ],
-    "noImplicitAny": true
+    ]
   },
   "exclude": [
     "dist",

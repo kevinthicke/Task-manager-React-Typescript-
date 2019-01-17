@@ -1,50 +1,17 @@
 import * as React from 'react';
-import { Grid, Row } from 'react-bootstrap';
-import TaskForm, { ITask } from './components/TasksForm';
-import TasksList from './components/TasksList';
+import { Grid } from 'react-bootstrap';
+import TaskList from './components/TaskList';
+import TaskFormContainer from './containers/TaskFormContainer';
+import Header from './components/Header';
 
-interface AppProps {
-  title: string
-}
-
-interface AppStates {
-  tasks: Array<ITask>
-}
-
-export default class App extends React.Component <AppProps, AppStates> {
-  constructor(props: AppProps) {
-    super(props);
-    this.state = {
-      tasks: []
-    }
-
-    this.addNewTask = this.addNewTask.bind(this);
-    this.deleteTask = this.deleteTask.bind(this);
-  }
-  
-  addNewTask(newTask: ITask) {
-    this.setState({ 
-      tasks: [...this.state.tasks, newTask] 
-    })
-  }
-
-  deleteTask(id:number) {
-    this.setState({ 
-      tasks: this.state.tasks.filter((task:ITask) => task.id!==id) 
-    });
-  }
-
-  render(): JSX.Element {
-    const { title } = this.props;
-    const { tasks } = this.state;
+export default class App extends React.Component <any, any> {
+  render() {
     return (
       <Grid>
-        <h1>{ title }</h1>
-        <Row>
-          <TaskForm addNewTask={this.addNewTask}/>
-          <TasksList tasks={tasks} deleteTask={this.deleteTask}/>
-        </Row>
-        </Grid>
+        <Header title={'Task manager App'} link="#"/>
+        <TaskFormContainer />
+        <TaskList />
+      </Grid>
     )
   }
 }
