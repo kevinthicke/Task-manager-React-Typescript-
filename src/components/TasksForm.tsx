@@ -68,7 +68,7 @@ export default class TaskForm extends React.Component <TaskFormProps, TaskFormSt
                                  onChange={this.handleOnChange}/>
                 </FormGroup>
                 <FormGroup>
-                    <ControlLabel>Task title</ControlLabel>
+                    <ControlLabel>Task description</ControlLabel>
                     <FormControl type="text"
                                  name="description"
                                  onChange={this.handleOnChange}/>
