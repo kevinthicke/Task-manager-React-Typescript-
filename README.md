@@ -1,1 +1,3 @@
-# Simple React-Typescript template
+# Task Manager App
+
+A simple React.js (Typescript) App.
