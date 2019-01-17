@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, FormGroup, FormControl, ControlLabel, FormControlProps} from 'react-bootstrap';
 
 const TaskFormStyle: React.CSSProperties = {
-    width: '400px',
+    width: '300px',
     margin: '20px'
 }
 
@@ -50,6 +50,11 @@ export default class TaskForm extends React.Component <TaskFormProps, TaskFormSt
         }
 
         this.props.addNewTask(newTask);
+        this.setState({
+            id: 0,
+            title: '',
+            description: ''
+        })
     }
 
     handleOnChange(event: React.FormEvent<FormControl>) {
@@ -59,17 +64,20 @@ export default class TaskForm extends React.Component <TaskFormProps, TaskFormSt
     }
 
     render(): JSX.Element {
+        const { title, description } = this.state;
         return (
             <form onSubmit={(event) => this.handleOnSubmit(event)} style={TaskFormStyle}>
                 <FormGroup>
                     <ControlLabel>Task title</ControlLabel>
                     <FormControl type="text"
+                                 value={title}
                                  name="title"
                                  onChange={this.handleOnChange}/>
                 </FormGroup>
                 <FormGroup>
                     <ControlLabel>Task description</ControlLabel>
                     <FormControl type="text"
+                                 value={description}
                                  name="description"
                                  onChange={this.handleOnChange}/>
                 </FormGroup>    

@@ -30,7 +30,7 @@ export default class App extends React.Component <AppProps, AppStates> {
 
   deleteTask(id:number) {
     this.setState({ 
-      tasks: this.state.tasks.filter(task => task.id!==id) 
+      tasks: this.state.tasks.filter((task:ITask) => task.id!==id) 
     });
   }
 
@@ -42,8 +42,6 @@ export default class App extends React.Component <AppProps, AppStates> {
         <h1>{ title }</h1>
         <Row>
           <TaskForm addNewTask={this.addNewTask}/>
-        </Row>
-        <Row>
           <TasksList tasks={tasks} deleteTask={this.deleteTask}/>
         </Row>
         </Grid>

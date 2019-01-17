@@ -3,7 +3,7 @@ import { ITask } from './TasksForm';
 import { ListGroup, ListGroupItem, Button, Well } from 'react-bootstrap';
 
 const TaskListStyle: React.CSSProperties = {
-    width: '400px'
+    width: '300px'
 }
 
 interface TaskListProps {
