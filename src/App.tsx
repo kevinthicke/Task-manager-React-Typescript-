@@ -19,15 +19,18 @@ export default class App extends React.Component <AppProps, AppStates> {
     }
 
     this.addNewTask = this.addNewTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
   }
   
   addNewTask(newTask: ITask) {
-    const _tasks = newTask; 
-    this.setState({ tasks: [...this.state.tasks, _tasks] })
+    this.setState({ tasks: [...this.state.tasks, newTask] })
   }
 
   deleteTask(id:number) {
-    console.log('quieres borrar ' + id);
+    const { tasks } = this.state;
+    const actualizedTasks = tasks.filter(task => task.id!==id)
+    
+    this.setState({ tasks: actualizedTasks });
   }
 
   render(): JSX.Element {
