@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, FormGroup, ControlLabel, FormControl, Well } from 'react-bootstrap';
-import { ITask } from '../../interfaces';
+import { ITask, IFormAttributes } from '../../interfaces';
 import FormItem from './FormItem';
 
 const TaskFormStyle = {
@@ -34,15 +34,14 @@ export default class TaskForm extends React.Component <TaskFormProps,TaskFormSta
         this.props.addNewTask(this.state);
       }
       
-      handleFormOnChange(formAttributes) {
+      handleFormOnChange({ nameFormAttribute, valueFormAttribute }: IFormAttributes) {
         this.setState({ 
           ...this.state, 
-          [formAttributes.name]: formAttributes.input 
+          [nameFormAttribute]: valueFormAttribute 
         });
       }
 
       render() {
-        console.log(this.state);
         return (
           <Well style={TaskFormStyle}>
             <form onSubmit={event => this.handleAddTask(event)}>
