@@ -35,7 +35,9 @@ export default class TaskForm extends React.Component <TaskFormProps,TaskFormSta
       }
       
       handleFormOnChange(event: any) {
-        this.setState({ ...this.state, [event.name]: event.value });
+        this.setState({ 
+          ...this.state, 
+          [event.name]: event.value });
       }
 
       render() {
@@ -43,8 +45,8 @@ export default class TaskForm extends React.Component <TaskFormProps,TaskFormSta
         return (
           <Well style={TaskFormStyle}>
             <form onSubmit={event => this.handleAddTask(event)}>
-              <FormItem handleFormOnChange={this.handleFormOnChange} name={'title'}/>
-              <FormItem handleFormOnChange={this.handleFormOnChange} name={'description'}/>
+              <FormItem handleFormOnChange={this.handleFormOnChange} name={'title'} />
+              <FormItem handleFormOnChange={this.handleFormOnChange} name={'description'} componentClass="textarea"/>
               <Button type="submit" bsStyle="primary">Save</Button>
             </form>
           </Well>
