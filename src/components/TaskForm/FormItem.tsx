@@ -9,14 +9,17 @@ interface FormItemProps {
 }
 
 export default class FormItem extends React.Component <FormItemProps,any> {
-    constructor(props: any) {
+    constructor(props: FormItemProps) {
         super(props);
 
         this.handleOnChange = this.handleOnChange.bind(this);
     }
 
     handleOnChange(event: React.FormEvent<FormControl>) {
-        const { name: nameFormAttribute , value: valueFormAttribute } = event.target as HTMLInputElement;
+        const { 
+            name: nameFormAttribute,
+            value: valueFormAttribute 
+        } = event.target as HTMLInputElement;
         
         this.props.handleFormOnChange({ nameFormAttribute, valueFormAttribute });
     }
@@ -30,6 +33,7 @@ export default class FormItem extends React.Component <FormItemProps,any> {
                 <FormControl type="text"
                              componentClass={componentClass}
                              name={name}
+                             autoComplete="off"
                              onChange={this.handleOnChange}/>
             </FormGroup>
         )
