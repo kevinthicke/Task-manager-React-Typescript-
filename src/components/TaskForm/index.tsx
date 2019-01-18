@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, FormGroup, ControlLabel, FormControl, Well } from 'react-bootstrap';
 import { ITask, IFormAttributes } from '../../interfaces';
 import FormItem from './FormItem';
+import { taskObjectValuesIsEmpty } from '../../utils/TaskFormUtils';
 
 const TaskFormStyle: React.CSSProperties = {
   width: '300px',
@@ -31,7 +32,6 @@ export default class TaskForm extends React.Component <TaskFormProps,TaskFormSta
     
       handleAddTask(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-    
         this.props.addNewTask(this.state);
       }
       
@@ -42,13 +42,19 @@ export default class TaskForm extends React.Component <TaskFormProps,TaskFormSta
         });
       }
 
+      renderButton() {
+        return taskObjectValuesIsEmpty(this.state) ? 
+          <Button type="submit" bsStyle="primary" disabled>Save</Button> : 
+          <Button type="submit" bsStyle="primary">Save</Button>
+      }
+
       render() {
         return (
           <Well style={TaskFormStyle}>
             <form onSubmit={event => this.handleAddTask(event)}>
               <FormItem handleFormOnChange={this.handleFormOnChange} name={'title'} componentClass="input"/>
               <FormItem handleFormOnChange={this.handleFormOnChange} name={'description'} componentClass="textarea"/>
-              <Button type="submit" bsStyle="primary">Save</Button>
+              { this.renderButton() }
             </form>
           </Well>
         )
