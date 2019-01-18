@@ -3,8 +3,9 @@ import { Button, FormGroup, ControlLabel, FormControl, Well } from 'react-bootst
 import { ITask, IFormAttributes } from '../../interfaces';
 import FormItem from './FormItem';
 
-const TaskFormStyle = {
-  width: '300px'
+const TaskFormStyle: React.CSSProperties = {
+  width: '300px',
+  margin: '20px'
 }
 
 interface TaskFormStates {

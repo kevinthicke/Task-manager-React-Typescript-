@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Navbar } from 'react-bootstrap';
 
 const NavBarStyle: React.CSSProperties = {
-    margin: '20px',
+    marginTop: '20px',
+    marginBottom: '20px',
     paddingLeft: '5%',
     height: '70px',
     display: 'flex',
