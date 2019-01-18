@@ -1,13 +1,8 @@
 import * as React from 'react';
-import { Button, FormGroup, ControlLabel, FormControl, Well } from 'react-bootstrap';
+import { Button, Well } from 'react-bootstrap';
 import { ITask, IFormAttributes } from '../../interfaces';
 import FormItem from './FormItem';
 import { taskObjectValuesIsEmpty } from '../../utils/TaskFormUtils';
-
-const TaskFormStyle: React.CSSProperties = {
-  width: '300px',
-  margin: '20px'
-}
 
 interface TaskFormStates {
     title: string,
@@ -50,7 +45,7 @@ export default class TaskForm extends React.Component <TaskFormProps,TaskFormSta
 
       render() {
         return (
-          <Well style={TaskFormStyle}>
+          <Well>
             <form onSubmit={event => this.handleAddTask(event)}>
               <FormItem handleFormOnChange={this.handleFormOnChange} name={'title'} componentClass="input"/>
               <FormItem handleFormOnChange={this.handleFormOnChange} name={'description'} componentClass="textarea"/>

@@ -21,7 +21,7 @@ interface HeaderProps {
 }
 
 const Header: React.SFC<HeaderProps> = ({ title, link }) => (
-    <Navbar style={NavBarStyle}>
+    <Navbar style={NavBarStyle} inverse>
         <Navbar.Header>
             <Navbar.Brand>
                 <a href={link} style={TitleStyle}>{title}</a>

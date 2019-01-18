@@ -1,9 +1,14 @@
 import * as React from 'react';
-import { Grid, Row } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import TaskList from './components/TaskList';
 import TaskFormContainer from './containers/TaskFormContainer';
 import Header from './components/Header';
 
+const TaskContainerStyle: React.CSSProperties = {
+  display: 'grid',
+  gridGap: '10px',
+  gridTemplateColumns: '1fr 1fr 1fr 1fr'
+}
 
 export default class App extends React.Component <any, any> {
   render() {
@@ -13,9 +18,11 @@ export default class App extends React.Component <any, any> {
           <Header title={'Task manager App'} link="#"/>
         </Row>
         <Row>
-          <TaskFormContainer />
-        </Row>
-        <TaskList />
+            <div style={TaskContainerStyle}>
+              <TaskFormContainer/>
+              <TaskList />  
+            </div>
+          </Row>
       </Grid>
     )
   }

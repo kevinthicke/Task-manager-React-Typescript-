@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import { capitalizeFirstLetter } from '../../utils/otherUtils';
+import { IFormAttributes } from '../../interfaces/index';
 
 interface FormItemProps {
     name: string,
     componentClass: string,
-    handleFormOnChange: (event: any) => void
+    handleFormOnChange: (event: IFormAttributes) => void
 }
 
-export default class FormItem extends React.Component <FormItemProps,any> {
+export default class FormItem extends React.Component <FormItemProps,{}> {
     constructor(props: FormItemProps) {
         super(props);
 
