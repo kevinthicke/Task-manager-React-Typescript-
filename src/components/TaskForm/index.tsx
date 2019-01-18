@@ -34,18 +34,19 @@ export default class TaskForm extends React.Component <TaskFormProps,TaskFormSta
         this.props.addNewTask(this.state);
       }
       
-      handleFormOnChange(event: any) {
+      handleFormOnChange(formAttributes) {
         this.setState({ 
           ...this.state, 
-          [event.name]: event.value });
+          [formAttributes.name]: formAttributes.input 
+        });
       }
 
       render() {
-
+        console.log(this.state);
         return (
           <Well style={TaskFormStyle}>
             <form onSubmit={event => this.handleAddTask(event)}>
-              <FormItem handleFormOnChange={this.handleFormOnChange} name={'title'} />
+              <FormItem handleFormOnChange={this.handleFormOnChange} name={'title'} componentClass="input"/>
               <FormItem handleFormOnChange={this.handleFormOnChange} name={'description'} componentClass="textarea"/>
               <Button type="submit" bsStyle="primary">Save</Button>
             </form>
