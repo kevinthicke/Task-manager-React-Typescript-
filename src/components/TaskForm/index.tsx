@@ -54,9 +54,9 @@ export default class TaskForm extends React.Component <TaskFormProps,TaskFormSta
       }
 
       renderButton() {
-        const titleOrDescriptionAreEmpty = taskObjectValuesIsEmpty(this.state);
+        const titleOrDescriptionIsEmpty = taskObjectValuesIsEmpty(this.state);
         
-        if(titleOrDescriptionAreEmpty) {
+        if(titleOrDescriptionIsEmpty) {
           return (
             <Button type="submit" bsStyle="primary" disabled>
               <Glyphicon glyph="glyphicon glyphicon-floppy-disk"/>
