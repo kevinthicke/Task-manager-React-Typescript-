@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, Well } from 'react-bootstrap';
 import { ITask, IFormAttributes } from '../../interfaces';
 import FormItem from './FormItem';
-import { taskObjectValuesIsEmpty } from '../../utils/TaskFormUtils';
+import { taskObjectValuesIsEmpty, textIsTooLong } from '../../utils/TaskFormUtils';
 
 interface TaskFormStates {
     title: string,
@@ -37,6 +37,22 @@ export default class TaskForm extends React.Component <TaskFormProps,TaskFormSta
         });
       }
 
+      renderDescription() {
+        const maxNumberOfCharacters = 165;
+        const descriptionIsTooLong = textIsTooLong(maxNumberOfCharacters, this.state.description);
+
+        if(descriptionIsTooLong) {
+          return <FormItem handleFormOnChange={this.handleFormOnChange} 
+                           name={'description'} 
+                           componentClass="textarea"
+                           validationState="error"/> 
+        } else {
+            return <FormItem handleFormOnChange={this.handleFormOnChange} 
+                             name={'description'} 
+                             componentClass="textarea"/>
+        }
+      }
+
       renderButton() {
         return taskObjectValuesIsEmpty(this.state) ? 
           <Button type="submit" bsStyle="primary" disabled>Save</Button> : 
@@ -48,7 +64,7 @@ export default class TaskForm extends React.Component <TaskFormProps,TaskFormSta
           <Well>
             <form onSubmit={event => this.handleAddTask(event)}>
               <FormItem handleFormOnChange={this.handleFormOnChange} name={'title'} componentClass="input"/>
-              <FormItem handleFormOnChange={this.handleFormOnChange} name={'description'} componentClass="textarea"/>
+              { this.renderDescription() }
               { this.renderButton() }
             </form>
           </Well>

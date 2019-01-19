@@ -6,6 +6,7 @@ import { IFormAttributes } from '../../interfaces/index';
 interface FormItemProps {
     name: string,
     componentClass: string,
+    validationState?: any,
     handleFormOnChange: (event: IFormAttributes) => void
 }
 
@@ -26,10 +27,10 @@ export default class FormItem extends React.Component <FormItemProps,{}> {
     }
 
     render () {
-        const { name, componentClass } = this.props;
+        const { name, componentClass, validationState } = this.props;
 
         return (
-            <FormGroup>
+            <FormGroup validationState={validationState}>
                 <ControlLabel>{ capitalizeFirstLetter(name) }</ControlLabel>
                 <FormControl type="text"
                              componentClass={componentClass}
