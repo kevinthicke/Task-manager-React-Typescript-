@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Well } from 'react-bootstrap';
+import { Button, Well, Glyphicon } from 'react-bootstrap';
 import { ITask, IFormAttributes } from '../../interfaces';
 import FormItem from './FormItem';
 import { taskObjectValuesIsEmpty, textIsTooLong } from '../../utils/TaskFormUtils';
@@ -54,9 +54,21 @@ export default class TaskForm extends React.Component <TaskFormProps,TaskFormSta
       }
 
       renderButton() {
-        return taskObjectValuesIsEmpty(this.state) ? 
-          <Button type="submit" bsStyle="primary" disabled>Save</Button> : 
-          <Button type="submit" bsStyle="primary">Save</Button>
+        const titleOrDescriptionAreEmpty = taskObjectValuesIsEmpty(this.state);
+        
+        if(titleOrDescriptionAreEmpty) {
+          return (
+            <Button type="submit" bsStyle="primary" disabled>
+              <Glyphicon glyph="glyphicon glyphicon-floppy-disk"/>
+              <span style={{ marginLeft: '7px'}}>Save</span> 
+            </Button>
+          )
+        } else return (
+          <Button type="submit" bsStyle="primary">
+            <Glyphicon glyph="glyphicon glyphicon-floppy-disk"/>
+            <span style={{ marginLeft: '7px'}}>Save</span> 
+          </Button>
+        )
       }
 
       render() {
